@@ -1,0 +1,80 @@
+.order-item {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+  align-items: start;
+  gap: 30px;
+  border: 1px solid tomato;
+  padding: 20px;
+  margin: 30px 0px;
+  font-size: 14px;
+  color: #505050;
+}
+
+.order-item-food,
+.order-item-name {
+  font-weight: 600;
+}
+
+.order-item-name {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.order-item-address {
+  margin-bottom: 10px;
+}
+
+/* Remove hardcoded background that overrides dynamic classes */
+.order-item select {
+  border: 1px solid tomato;
+  width: max(11vw, 120px);
+  padding: 10px;
+  outline: none;
+}
+
+/* Dynamic status styling */
+.admin-status {
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  appearance: none;              /* Cross-browser normalize */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: inherit;     /* Allow dynamic class to apply */
+}
+
+/* Background colors for each status */
+.admin-status-processing {
+  background-color: orange;
+}
+
+.admin-status-delivery {
+  background-color: #007bff;
+}
+
+.admin-status-delivered {
+  background-color: #28a745;
+}
+
+/* Responsive styling */
+@media (max-width: 1000px) {
+  .order-item {
+    font-size: 12px;
+    grid-template-columns: 0.5fr 2fr 1fr;
+    padding: 15px 8px;
+  }
+
+  .order-item select {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .order-item img {
+    width: 40px;
+  }
+}

@@ -27,7 +27,7 @@ const Dashboard = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (!admin && !token) {
+    if (!admin || !token) {
       navigate("/");
     }
   }, [admin, token, navigate]);
@@ -35,26 +35,29 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const foodRes = await axios.get(`${url}/api/food/list`);
-        const orderRes = await axios.get(`${url}/api/order/list`, {
-          headers: { token },
-        });
-        const userRes = await axios.get(`${url}/api/user/list`, {
-          headers: { token },
-        });
+        const [foodRes, orderRes, userRes] = await Promise.all([
+          axios.get(`${url}/api/food/list`),
+          axios.get(`${url}/api/order/list`, { headers: { token } }),
+          axios.get(`${url}/api/user/list`, { headers: { token } }),
+        ]);
 
-        const paidOrders = orderRes.data.data.filter((order) => order.payment);
+        const foodList = Array.isArray(foodRes.data.data) ? foodRes.data.data : [];
+        const orders = Array.isArray(orderRes.data.data) ? orderRes.data.data : [];
+        const users = Array.isArray(userRes.data.data) ? userRes.data.data : [];
+
+        const paidOrders = orders.filter((order) => order.payment);
+
+        // Daily income
         const dailyIncome = paidOrders.reduce((total, order) => {
           const orderDate = new Date(order.date).toDateString();
           const today = new Date().toDateString();
           return orderDate === today ? total + order.amount : total;
         }, 0);
 
-        // Filter normal (non-admin) users
-        const allUsers = Array.isArray(userRes.data.data) ? userRes.data.data : [];
-        const normalUsers = allUsers.filter((user) => user.role !== "admin");
+        // Filter out admin users
+        const normalUsers = users.filter((user) => user.role !== "admin");
 
-        // Generate last 7 days sales chart data
+        // Generate chart data
         const last7Days = Array.from({ length: 7 }, (_, i) => {
           const date = new Date();
           date.setDate(date.getDate() - (6 - i));
@@ -71,18 +74,13 @@ const Dashboard = () => {
           return { date: key, income };
         });
 
-        setChartData(last7Days);
-
         setStats({
-          foods: Array.isArray(foodRes.data.data)
-            ? foodRes.data.data.length
-            : 0,
-          orders: Array.isArray(orderRes.data.data)
-            ? orderRes.data.data.length
-            : 0,
-          users: normalUsers.length, // ✅ Only count non-admin users
+          foods: foodList.length,
+          orders: orders.length,
+          users: normalUsers.length,
           income: dailyIncome,
         });
+        setChartData(last7Days);
       } catch (error) {
         console.error("Error loading dashboard stats", error);
       }
@@ -145,7 +143,7 @@ const Dashboard = () => {
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="income" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="income" fill="orange" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

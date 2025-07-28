@@ -7,8 +7,8 @@
 
 ## 🚀 Live Demo
 
-- 👨‍🍳 **User Panel:** [LIVE LINK](#)  
-- 🛠️ **Admin Panel:** [LIVE LINK](#)  
+- 👨‍🍳 **User Panel:** [LIVE LINK](https://food-delivery-frontend-onfe.onrender.com)  
+- 🛠️ **Admin Panel:** [LIVE LINK](https://food-delivery-admin-yjw2.onrender.com)  
 
 ---
 
@@ -40,14 +40,6 @@
 - **RBAC** for user/admin separation
 - **Stripe** for safe and smooth payments
 - **Multer** for image uploads
-
----
-
-## 🖼️ Screenshots
-
-| Hero Section | Product Listing | Cart Page | Login Popup |
-|--------------|------------------|-----------|-------------|
-| ![](./screenshots/hero.png) | ![](./screenshots/products.png) | ![](./screenshots/cart.png) | ![](./screenshots/login.png) |
 
 ---
 

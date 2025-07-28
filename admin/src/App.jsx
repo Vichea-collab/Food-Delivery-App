@@ -11,7 +11,7 @@ import Login from "./components/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import User from "./pages/User/User";
 const App = () => {
-  const url = "http://localhost:4000"; 
+  const url = "https://food-delivery-backend-x3jz.onrender.com"; 
   return (
     <div>
       <ToastContainer />

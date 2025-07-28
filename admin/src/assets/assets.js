@@ -16,4 +16,4 @@ export const assets ={
     user_icon
 }
 
-export const url = 'http://localhost:4000';
+export const url = 'https://food-delivery-backend-x3jz.onrender.com';

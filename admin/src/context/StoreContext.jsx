@@ -7,7 +7,7 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [admin, setAdmin] = useState(false);
   const [userId, setUserId] = useState("");
-  const url = "http://localhost:4000";
+  const url = "https://food-delivery-backend-x3jz.onrender.com";
 
   useEffect(() => {
     const savedToken = localStorage.getItem("token");

@@ -10,6 +10,14 @@
 - 👨‍🍳 **User Panel:** [LIVE LINK](https://food-delivery-frontend-onfe.onrender.com)  
 - 🛠️ **Admin Panel:** [LIVE LINK](https://food-delivery-admin-yjw2.onrender.com)  
 
+User Account:
+Email: vichea@gmail.com
+Password: vichea123
+Admin Account:
+Email: admin@gmail.com
+Password: admin123
+
+
 ---
 
 ## ✨ Features
